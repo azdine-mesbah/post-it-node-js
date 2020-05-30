@@ -1,0 +1,54 @@
+<%- include('../includes/header')%>
+<h2><img class="avatar-small" src="<%= profile.avatar %>">
+  <span id="profile-username"><%= profile.username %></span>
+
+  <% if(profile.username == currentUser.username){ %>
+  <a href="/users/edit" class="text-black float-right header-search-icon" title="Edit Profile" data-toggle="tooltip"
+    data-placement="bottom"><i class="fas fa-user-edit"></i></a>
+  <% }else{ %>
+  <% if(profile.isFollowed){ %>
+  <form class="d-inline" action="/follows/unfollow/<%= profile._id %>" method="POST">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <button class="btn btn-danger btn-sm">Unfollow <i class="fas fa-user-times"></i></button>
+  </form>
+  <%} else {%>
+  <form class="d-inline" action="/follows/follow/<%= profile._id %>" method="POST">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <button class="btn btn-primary btn-sm">Follow <i class="fas fa-user-plus"></i></button>
+  </form>
+
+  <% } %>
+  <% } %>
+</h2>
+
+<div id="profile-nav" class="profile-nav nav nav-tabs pt-2">
+  <a href="#" id='posts' class="profile-nav-link nav-item nav-link active">Posts: <%=profile.posts.length%></a>
+  <a href="#" id='followers' class="profile-nav-link nav-item nav-link ">Followers: <%=profile.followers.length%></a>
+  <a href="#" id='followings' class="profile-nav-link nav-item nav-link ">Following: <%=profile.followings.length%></a>
+</div>
+<div id='posts-tab' class="list-group">
+  <% profile.posts.forEach(function(post){ %>
+  <a href="/posts/show/<%= post._id %>" class="list-group-item list-group-item-action">
+    <img class="avatar-tiny" src="<%= profile.avatar%>">
+    <strong><%= post.title %></strong>
+    <%= post.createdAt.getDay() %>/<%= post.createdAt.getMonth()+1 %>/<%= post.createdAt.getFullYear() %>
+  </a>
+  <%})%>
+</div>
+<div id='followers-tab' class="list-group --hidden">
+  <% profile.followers.forEach(function(follow){ %>
+  <a href="/users/profile/<%= follow.username %>" class="list-group-item list-group-item-action">
+    <img class="avatar-tiny" src="<%= follow.avatar%>">
+    <strong><%= follow.username %></strong>
+  </a>
+  <%})%>
+</div>
+<div id='followings-tab' class="list-group --hidden">
+  <% profile.followings.forEach(function(follow){ %>
+  <a href="/users/profile/<%= follow.username %>" class="list-group-item list-group-item-action">
+    <img class="avatar-tiny" src="<%= follow.avatar%>">
+    <strong><%= follow.username %></strong>
+  </a>
+  <%})%>
+</div>
+<%- include('../includes/footer')%>

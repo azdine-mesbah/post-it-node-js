@@ -1,0 +1,34 @@
+<%- include('includes/header') %>
+<div class="row align-items-center">
+    <div class="col-lg-7 py-3">
+        <h1 class="display-3">Do you like Writing?</h1>
+        <p class="lead text-muted">At Share-it, you can share and discuss your ideas, And also read other's toughts.
+        </p>
+    </div>
+    <div class="col-lg-5 pl-lg-5 pb-3 py-lg-5">
+        <form action="/auth/register" method="POST">
+            <div class="form-group">
+                <label for="username-register" class="text-muted mb-1"><small>Username</small></label>
+                <input name="username" id="username-register" class="form-control" type="text"
+                    placeholder="Pick a username" autocomplete="off">
+            </div>
+            <div class="form-group">
+                <label for="email-register" class="text-muted mb-1"><small>Email</small></label>
+                <input name="email" id="email-register" class="form-control" type="text" placeholder="you@example.com"
+                    autocomplete="off">
+            </div>
+            <div class="form-group">
+                <label for="password" class="text-muted mb-1"><small>Password</small></label>
+                <input name="password" class="form-control" type="password" placeholder="Create a password">
+            </div>
+            <div class="form-group">
+                <label for="confirmation" class="text-muted mb-1"><small>Password confirmation</small></label>
+                <input name="confirmation" class="form-control" type="password" placeholder="Confirm a password">
+            </div>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <button type="submit" class="py-3 mt-4 btn btn-lg btn-success btn-block">Sign up for OurApp</button>
+
+        </form>
+    </div>
+</div>
+<%- include('includes/footer') %>
