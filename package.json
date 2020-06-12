@@ -32,9 +32,9 @@
     "nodemon": "^2.0.3"
   },
   "scripts": {
-    "watch": "nodemon app",
+    "watch": "nodemon src/index.js",
     "pack": "webpack --watch",
-    "start": "node index.js"
+    "start": "node src/index.js"
   },
   "keywords": [],
   "author": "",
