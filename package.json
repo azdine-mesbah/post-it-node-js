@@ -2,7 +2,7 @@
   "name": "nodejs-project",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "index.js",
   "dependencies": {
     "@babel/core": "^7.9.6",
     "@babel/preset-env": "^7.9.6",
@@ -33,7 +33,8 @@
   },
   "scripts": {
     "watch": "nodemon app",
-    "pack": "webpack --watch"
+    "pack": "webpack --watch",
+    "start": "node app/index.js"
   },
   "keywords": [],
   "author": "",

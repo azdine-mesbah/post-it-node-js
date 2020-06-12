@@ -15,8 +15,10 @@ app.use(express.static(__dirname + '/public')) // declare a public folder to put
 app.set('views', __dirname + '/views') // set application to use the views folder for MVC.
 app.set('view engine', 'ejs') // set Views template type 'ejs'.
 
+let db_disconnected
+
 db.connect(process.env.DBURL).then((client) => {
-    
+    console.log('db connected..')
     app.use(require('./sessionOptions'))
     app.use(require('./middlewares/getSession'))
     app.use(csrf())
@@ -27,18 +29,18 @@ db.connect(process.env.DBURL).then((client) => {
     io.use(require('./middlewares/socketSanitizer'))
 
 }).catch((errors) => {
-    console.log(errors)
+    console.log('error connecting db')
     app.use('/', (req, res) => { res.send(errors) })
 }).finally(() => {
     server.listen(process.env.PORT)
 })
-
 io.on('connection', (socket) => {
-    if(socket.handshake.session.currentUser){
+    if (socket.handshake.session.currentUser) {
         socket.on('message', data => {
             sender = socket.handshake.session.currentUser
-            if(data.message != '')
-                io.emit('message', { body: data.message, sender: {username: sender.username, avatar: sender.avatar} })
+            if (data.message != '')
+                io.emit('message', { body: data.message, sender: { username: sender.username, avatar: sender.avatar } })
         })
     }
 })
+
