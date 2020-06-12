@@ -16,7 +16,7 @@ app.set('views',__dirname +  '/views') // set application to use the views folde
 app.set('view engine', 'ejs') // set Views template type 'ejs'.
 
 
-db.connect(process.env.LOCALDB).then((client) => {
+db.connect(process.env.DBURL).then((client) => {
     app.use(require('./sessionOptions'))
     app.use(require('./middlewares/getSession'))
     app.use(csrf())
