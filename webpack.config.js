@@ -1,10 +1,10 @@
 const path = require('path')
 
 module.exports = {
-  entry: './app/frontend/main.js',
+  entry: './frontend/main.js',
   output: {
     filename: 'main-bundle.js',
-    path: path.resolve(__dirname, 'app/public')
+    path: path.resolve(__dirname, 'public')
   },
   mode: "production",
   module: {
