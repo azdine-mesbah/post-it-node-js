@@ -34,7 +34,7 @@
   "scripts": {
     "watch": "nodemon app",
     "pack": "webpack --watch",
-    "start": "node app/index.js"
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
