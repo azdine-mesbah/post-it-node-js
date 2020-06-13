@@ -29,7 +29,7 @@ db.connect(process.env.DBURL).then((client) => {
     console.log('error connecting db')
     app.use('/', (req, res) => { res.send(errors) })
 }).finally(() => {
-    server.listen(process.env.PORT, ()=>{
+    server.listen(8080, ()=>{
         console.log('server running on port: ' + process.env.PORT)
     })
     io.on('connection', (socket) => {
