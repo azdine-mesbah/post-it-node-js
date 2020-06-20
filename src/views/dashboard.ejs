@@ -2,7 +2,7 @@
 
 <% if(posts.length){ %>
 <% posts.forEach(function(post){ %>
-<a href="/posts/<%= post._id %>" class="list-group-item list-group-item-action">
+<a href="/posts/show/<%= post._id %>" class="list-group-item list-group-item-action">
   <img class="avatar-tiny" src="<%= post.author.avatar%>">
   <strong><%= post.title %></strong>
   <%= post.createdAt.getDay() %>/<%= post.createdAt.getMonth()+1 %>/<%= post.createdAt.getFullYear() %>
